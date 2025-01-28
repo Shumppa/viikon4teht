@@ -1,5 +1,10 @@
 package main;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class App 
@@ -21,6 +26,7 @@ public class App
             System.out.println("5) Lataa peli");
             System.out.println("0) Lopeta peli");
             int valinta = sc.nextInt();
+            sc.nextLine();
 
                 switch(valinta){ 
                     case 1:
@@ -36,11 +42,37 @@ public class App
                         break;
                         
                     case 3:
-                        
+                        System.out.println("Valitse hirviö, johon hyökätä: ");
+                        cave.listMonsters();
+                        int monsterIndex = sc.nextInt();
+                        sc.nextLine();
+                        Monster monster = cave.monsters.get(monsterIndex - 1);
+                        player.attack(monster, cave);
+                        break;
+
                     case 4:
-                        
+                        System.out.println("Anna tiedoston nimi, johon peli tallentaa: ");
+                        String filename = sc.nextLine();
+                        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+                            oos.writeObject(cave);
+                            System.out.println("Peli tallennettiin tiedostoon " + filename + ".");
+                        } catch (IOException e) {
+                            System.out.println("Tallennus epäonnistui: " + e.getMessage());
+                        }
+                        break;
+
                     case 5:
-                        
+                        System.out.println("Anna tiedoston nimi, josta peli ladataan: ");
+                        String filename2 = sc.nextLine();
+                        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename2))) {
+                            cave = (Cave) ois.readObject();
+                            player = cave.player;
+                            System.out.println("Peli ladattu tiedostosta " + filename2 + ". Tervetuloa takaisin, " + player.name + ".");
+                        } catch (IOException | ClassNotFoundException e) {
+                            System.out.println("Lataus epäonnistui: " + e.getMessage());
+                        }
+                        break;   
+
                     case 0:
                         System.out.println("Peli päättyy. Kiitos ohjelman käytöstä.");
                         exit = true;

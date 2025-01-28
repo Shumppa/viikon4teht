@@ -22,10 +22,9 @@ public class Cave implements Serializable{
     }
 
     public void listMonsters(){
-        for (Monster monster : monsters){
-            System.out.println(monster.name + " / " + monster.health);
-        }
-    }
-
-    
-}
+        System.out.println("Luolan hirviöt: ");
+        for (int i = 0; i < this.monsters.size(); i++){
+                        monsters.get(i).printInfo(i + 1);
+                    }
+                }
+            }

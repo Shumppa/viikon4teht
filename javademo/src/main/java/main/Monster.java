@@ -12,5 +12,8 @@ public class Monster implements Serializable{
         this.health = health;
     }
 
+    public void printInfo(int number){
+        System.out.println(number + ": " + this.name + " / " + this.health + "HP");
+    }
 
 }
