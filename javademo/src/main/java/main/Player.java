@@ -17,7 +17,7 @@ public class Player implements Serializable{
             System.out.println("Hirviöllä on " + target.health + " elämää jäljellä.");
         } else {
             System.out.println(this.name + " hyökkää " + target.name + " hirviöön!");
-            System.out.println( this.name + " kuoli!");
+            System.out.println( target.name + " kuoli!");
             cave.removeMonster(target);
         }
         }
