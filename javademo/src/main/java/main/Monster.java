@@ -16,4 +16,8 @@ public class Monster implements Serializable{
         System.out.println(number + ": " + this.name + " / " + this.health + "HP");
     }
 
+    public Boolean takeDamage(int damage){
+        this.health -= damage;
+        return health > 0;
+    }
 }

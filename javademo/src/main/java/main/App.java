@@ -38,6 +38,9 @@ public class App
                         break;
 
                     case 2:
+                        if (cave.monsters.isEmpty()) {
+                            System.out.println("Luola on tyhjä.");
+                        } else
                         cave.listMonsters();
                         break;
                         
@@ -74,7 +77,7 @@ public class App
                         break;   
 
                     case 0:
-                        System.out.println("Peli päättyy. Kiitos ohjelman käytöstä.");
+                        System.out.println("Peli päättyy. Kiitos pelaamisesta!");
                         exit = true;
                         break;
                     default:
