@@ -11,14 +11,13 @@ public class Player implements Serializable{
     }
 
     public void attack(Monster target, Cave cave){
-        if (target.health > 10){
-            target.health -= 10;
-            System.out.println(this.name + " hyökkää " + target.name + " hirviöön!");
+        if (target.takeDamage(10)) {
+            System.out.println(name + " hyökkää " + target.name + " hirviöön!");
             System.out.println("Hirviöllä on " + target.health + " elämää jäljellä.");
         } else {
-            System.out.println(this.name + " hyökkää " + target.name + " hirviöön!");
-            System.out.println( target.name + " kuoli!");
+            System.out.println(name + " hyökkää " + target.name + " hirviöön!");
+            System.out.println(target.name + " on kuollut!");
             cave.removeMonster(target);
         }
-        }
+    }
 }
