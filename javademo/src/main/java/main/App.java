@@ -50,7 +50,10 @@ public class App
                         int monsterIndex = sc.nextInt();
                         sc.nextLine();
                         Monster monster = cave.monsters.get(monsterIndex - 1);
-                        player.attack(monster, cave);
+                        player.attack(monster);
+                        if (monster.health <= 0) {
+                            cave.removeMonster(monster);
+                        }
                         break;
 
                     case 4:
