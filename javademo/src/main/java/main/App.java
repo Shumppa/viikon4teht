@@ -41,6 +41,7 @@ public class App
                         if (cave.monsters.isEmpty()) {
                             System.out.println("Luola on tyhjä.");
                         } else
+                        System.out.println("Luolan hirviöt: ");
                         cave.listMonsters();
                         break;
                         
